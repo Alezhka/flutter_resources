@@ -1,5 +1,9 @@
 # flutter_resources
 
+<a href="https://pub.dev/packages/flutter_resources"><img src="https://img.shields.io/badge/pub-v0.0.1-blue" alt="Pub"></a>
+
+--- 
+
 Flutter resources managment plugin.
 
 ## Getting Started
