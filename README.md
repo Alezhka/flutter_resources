@@ -1,6 +1,6 @@
 # flutter_resources
 
-<a href="https://pub.dev/packages/flutter_resources"><img src="https://img.shields.io/badge/pub-v0.0.1-blue" alt="Pub"></a>
+<a href="https://pub.dev/packages/flutter_resources"><img src="https://img.shields.io/badge/pub-v0.0.2-blue" alt="Pub"></a>
 
 --- 
 
@@ -53,14 +53,6 @@ Resources(
     child: MaterialApp(), 
 )
 ```
-
-4. Initialize resources for your context.
-```
-Resources.init(context);
-```
-
-Please init resources after MaterialAppWidget. 
-If you use calculated value for you delegates(For example flutter_screenutil) please call init after initializes.
 
 4. Get data.
 ```

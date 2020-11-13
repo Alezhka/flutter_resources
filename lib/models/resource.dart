@@ -6,15 +6,18 @@ import 'display_metrics.dart';
 
 abstract class ResourceDelegate<T> {
 
+  Type get type => T;
+
   Map<String, Resource<T>> get resources;
 
 }
 
 class ResolveDelegate<T> {
 
+  final Type type;
   final Map<String, T> resources;
 
-  const ResolveDelegate(this.resources);
+  const ResolveDelegate(this.type, this.resources);
 
 }
 

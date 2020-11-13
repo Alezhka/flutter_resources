@@ -6,6 +6,7 @@ import 'models/configuration.dart';
 import 'models/resource.dart';
 
 import 'resolver.dart';
+import 'utils.dart';
 
 class R {
 
@@ -24,25 +25,24 @@ class R {
     }
 
     _instance = R._(newConfiguration, resources);
+    _instance._init();
     return _instance;
   }
 
   /// Initialize resources for current configuration.
-  void init() async {
-    _resolved = _resources.map((d) {
-      final resources = d.resources.map((key, resource) => MapEntry(key, _resolveResource(resource)));
-      return ResolveDelegate(resources);
-    }).toList();
+  Future<void> _init() async {
+    _resolved = _resources.map(_resolveDelegate).toList();
   }
 
   /// Get resource.
   T get<T>(String name) {
+    final type = typeOf<T>();
     if(_resolved != null) {
-      final ResolveDelegate<T> delegate = _resolved.firstWhere((e) => e is T, orElse: () => null);
+      final ResolveDelegate delegate = _resolved.firstWhere((e) => e.type == type, orElse: () => null);
       return delegate.resources[name];
     }
 
-    final ResourceDelegate<T> delegate = _resources.firstWhere((e) => e is T, orElse: () => null);
+    final ResourceDelegate<T> delegate = _resources.firstWhere((e) => e.type == type, orElse: () => null);
     if(delegate == null) {
       return null;
     }
@@ -53,6 +53,11 @@ class R {
     }
 
     return _resolveResource(resource);
+  }
+
+  ResolveDelegate<T> _resolveDelegate<T>(ResourceDelegate<T> delegate) {
+    final resources = delegate.resources.map((key, resource) => MapEntry(key, _resolveResource(resource)));
+    return ResolveDelegate<T>(delegate.type, resources);
   }
 
   T _resolveResource<T>(Resource<T> resource) {

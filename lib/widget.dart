@@ -47,11 +47,6 @@ class Resources extends StatefulWidget {
     return R.of(context, data.delegates);
   }
 
-  static void init(BuildContext context) {
-    final r = of(context);
-    r.init();
-  }
-
 }
 
 class _ResourceState extends State<Resources> {
