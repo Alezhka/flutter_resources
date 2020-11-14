@@ -1,9 +1,5 @@
 # flutter_resources
 
-<a href="https://pub.dev/packages/flutter_resources"><img src="https://img.shields.io/badge/pub-v0.0.2-blue" alt="Pub"></a>
-
---- 
-
 Flutter resources managment plugin.
 
 ## Getting Started
@@ -33,7 +29,7 @@ class IntResources extends ResourceDelegate<int> {
         orientation: Orientation.landscape,
         languageCode: 'en',
         countryCode: 'US',
-        platform: TargetPlatform.Android,
+        platform: PlatformType.Android,
       )
     ])
   };
