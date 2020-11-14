@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final orientation = resources.get<String>(StringResources.orientation);
     final language = resources.get<String>(StringResources.language);
     final country = resources.get<String>(StringResources.country);
+    final platform = resources.get<String>(StringResources.platform);
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter resources'),
@@ -66,6 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Country: $country',
             ),
+            Text(
+              'Platform: $platform',
+            ),
           ],
         ),
       ),
@@ -80,6 +84,7 @@ class StringResources extends ResourceDelegate<String> {
   static const orientation = 'orientation';
   static const language = 'language';
   static const country = 'country';
+  static const platform = 'platform';
   
   @override
   Map<String, Resource<String>> get resources => {
@@ -133,6 +138,29 @@ class StringResources extends ResourceDelegate<String> {
     country: Resource('other', [
       ResourceOption('us',
         countryCode: 'US'
+      ),
+    ]),
+    platform: Resource('other', [
+      ResourceOption('web',
+        platform: PlatformType.web
+      ),
+      ResourceOption('android',
+        platform: PlatformType.android
+      ),
+      ResourceOption('ios',
+        platform: PlatformType.ios
+      ),
+      ResourceOption('fuchsia',
+        platform: PlatformType.fuchsia
+      ),
+      ResourceOption('linux',
+        platform: PlatformType.linux
+      ),
+      ResourceOption('macOS',
+        platform: PlatformType.macOS
+      ),
+      ResourceOption('windows',
+        platform: PlatformType.windows
       ),
     ])
   };

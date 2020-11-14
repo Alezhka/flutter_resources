@@ -1,8 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_resources/models/screen_size.dart';
+import 'package:flutter_resources/models/enums.dart';
 
-import 'display_metrics.dart';
+import 'enums.dart';
 
 abstract class ResourceDelegate<T> {
 
@@ -39,6 +39,7 @@ class ResourceOption<T> {
   final String languageCode;
   final String countryCode;
   final Brightness brightness;
+  final PlatformType platform;
 
   const ResourceOption(this.value, {
     this.displayMetrics,
@@ -47,5 +48,6 @@ class ResourceOption<T> {
     this.languageCode,
     this.countryCode,
     this.brightness,
+    this.platform,
   });
 }

@@ -1,7 +1,11 @@
 
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../utils.dart';
+import 'enums.dart';
 
 class Configuration {
 
@@ -10,6 +14,7 @@ class Configuration {
   final String languageCode;
   final String countryCode;
   final Brightness brightness;
+  final PlatformType platform;
 
   Configuration({
     this.size,
@@ -17,6 +22,7 @@ class Configuration {
     this.languageCode,
     this.countryCode,
     this.brightness,
+    this.platform,
   });
 
   factory Configuration.of(BuildContext context) {
@@ -28,6 +34,7 @@ class Configuration {
       languageCode: locale.languageCode,
       countryCode: locale.countryCode,
       brightness: mq.platformBrightness,
+      platform: currentPlatform,
     );
   }
 
@@ -42,7 +49,8 @@ class Configuration {
         && orientation == o.orientation
         && languageCode == o.languageCode
         && countryCode == o.countryCode
-        && brightness == o.brightness;
+        && brightness == o.brightness
+        && platform == o.platform;
   }
 
   @override
@@ -50,7 +58,8 @@ class Configuration {
       ^ orientation.hashCode 
       ^ languageCode.hashCode 
       ^ countryCode.hashCode 
-      ^ brightness.hashCode;
+      ^ brightness.hashCode
+      ^ platform.hashCode;
 
   
 }

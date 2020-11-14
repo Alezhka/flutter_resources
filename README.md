@@ -33,7 +33,7 @@ class IntResources extends ResourceDelegate<int> {
         orientation: Orientation.landscape,
         languageCode: 'en',
         countryCode: 'US',
-
+        platform: TargetPlatform.Android,
       )
     ])
   };
@@ -67,5 +67,6 @@ final custom = resources.get<int>('custom');
 * screenSize (small, normal, large);
 * orientation (portrait, landscape);
 * brightness (dark, light);
+* platform (web, android, ios, fuchsia, macOS, linux, windows)
 * languageCode;
 * countryCode;

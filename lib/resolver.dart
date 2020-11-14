@@ -34,6 +34,10 @@ bool resolve(Configuration c, ResourceOption o) {
     return false;
   }
 
+  if(o.platform != null && !_resolvePlatform(c, o.platform)) {
+    return false;
+  }
+
   return true;
 }
 
@@ -87,4 +91,8 @@ bool _resolveCountryCode(Configuration c, String value) {
 
 bool _resolveBrightness(Configuration c, Brightness value) {
   return value == c.brightness;
+}
+
+bool _resolvePlatform(Configuration c, PlatformType value) {
+  return value == c.platform;
 }

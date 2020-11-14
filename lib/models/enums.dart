@@ -1,4 +1,13 @@
 
+enum DisplayMetrics {
+  l,
+  m,
+  h,
+  xh,
+  xxh,
+  xxxh
+}
+
 enum ScreenSize {
   /// Screen is at least approximately 320x426 dp units, corresponds to the small resource qualifier.
   small,
@@ -8,4 +17,14 @@ enum ScreenSize {
   large,
   /// Screen is at least approximately 720x960 dp units, corresponds to the xlarge resource qualifier.
   xlarge
+}
+
+enum PlatformType {
+  web,
+  windows,
+  linux,
+  macOS,
+  android,
+  fuchsia,
+  ios
 }
