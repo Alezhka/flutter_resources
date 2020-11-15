@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_resources/constants.dart';
 import 'package:flutter_resources/flutter_resources.dart';
 import 'package:flutter_resources/models/configuration.dart';
 
@@ -38,25 +39,28 @@ bool resolve(Configuration c, ResourceOption o) {
     return false;
   }
 
+  if(o.direction != null && !_resolveDirection(c, o.direction)) {
+    return false;
+  }
+
   return true;
 }
 
 bool _resolveDisplayMetrics(Configuration c, DisplayMetrics value) {
-  final width = c.size.width;
- 
+  final ratio = c.pixelRatio;
   switch(value) {
-    case DisplayMetrics.l:    // 120dpi
-      return width <= 120; 
-    case DisplayMetrics.m:    // 160dpi
-      return width > 120 && width <= 160;
-    case DisplayMetrics.h:    // 240dpi
-      return width > 160 && width <= 240;
-    case DisplayMetrics.xh:   // 320dpi
-      return width > 240 && width <= 320;
-    case DisplayMetrics.xxh:  // 480dpi 
-      return width > 320 && width <= 480;
-    case DisplayMetrics.xxxh: // 720dpi 
-      return width > 480 && width <= 720;
+    case DisplayMetrics.l:
+      return ratio <= kRatioLdpi; 
+    case DisplayMetrics.m:
+      return ratio > kRatioLdpi && ratio <= kRatioMdpi;
+    case DisplayMetrics.h:
+      return ratio > kRatioMdpi && ratio <= kRatioHdpi;
+    case DisplayMetrics.xh:
+      return ratio > kRatioHdpi && ratio <= kRatioXHdpi;
+    case DisplayMetrics.xxh:
+      return ratio > kRatioXHdpi && ratio <= kRatioXXHdpi;
+    case DisplayMetrics.xxxh:
+      return ratio > kRatioXXHdpi;
   }
   return false;
 }
@@ -95,4 +99,9 @@ bool _resolveBrightness(Configuration c, Brightness value) {
 
 bool _resolvePlatform(Configuration c, PlatformType value) {
   return value == c.platform;
+}
+
+
+bool _resolveDirection(Configuration c, TextDirection value) {
+  return value == c.direction;
 }

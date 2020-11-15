@@ -40,6 +40,7 @@ class ResourceOption<T> {
   final String countryCode;
   final Brightness brightness;
   final PlatformType platform;
+  final TextDirection direction;
 
   const ResourceOption(this.value, {
     this.displayMetrics,
@@ -49,5 +50,6 @@ class ResourceOption<T> {
     this.countryCode,
     this.brightness,
     this.platform,
+    this.direction,
   });
 }

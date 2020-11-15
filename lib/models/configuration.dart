@@ -10,31 +10,38 @@ import 'enums.dart';
 class Configuration {
 
   final Size size;
+  final double pixelRatio;
   final Orientation orientation;
   final String languageCode;
   final String countryCode;
   final Brightness brightness;
   final PlatformType platform;
+  final TextDirection direction;
 
   Configuration({
     this.size,
+    this.pixelRatio,
     this.orientation,
     this.languageCode,
     this.countryCode,
     this.brightness,
     this.platform,
+    this.direction,
   });
 
   factory Configuration.of(BuildContext context) {
     final mq = MediaQuery.of(context);
     final locale = Localizations.localeOf(context);
+    final direction = Directionality.of(context);
     return Configuration(
       size: mq.size,
+      pixelRatio: mq.devicePixelRatio,
       orientation: mq.orientation,
       languageCode: locale.languageCode,
       countryCode: locale.countryCode,
       brightness: mq.platformBrightness,
       platform: currentPlatform,
+      direction: direction,
     );
   }
 
@@ -50,7 +57,8 @@ class Configuration {
         && languageCode == o.languageCode
         && countryCode == o.countryCode
         && brightness == o.brightness
-        && platform == o.platform;
+        && platform == o.platform
+        && direction == o.direction;
   }
 
   @override
@@ -59,7 +67,8 @@ class Configuration {
       ^ languageCode.hashCode 
       ^ countryCode.hashCode 
       ^ brightness.hashCode
-      ^ platform.hashCode;
+      ^ platform.hashCode
+      ^ direction.hashCode;
 
   
 }
