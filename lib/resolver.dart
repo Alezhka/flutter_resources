@@ -46,7 +46,7 @@ bool resolve(Configuration c, ResourceOption o) {
   return true;
 }
 
-bool _resolveDisplayMetrics(Configuration c, DisplayMetrics value) {
+bool _resolveDisplayMetrics(Configuration c, DisplayMetrics? value) {
   final ratio = c.pixelRatio;
   switch(value) {
     case DisplayMetrics.l:
@@ -61,11 +61,12 @@ bool _resolveDisplayMetrics(Configuration c, DisplayMetrics value) {
       return ratio > kRatioXHdpi && ratio <= kRatioXXHdpi;
     case DisplayMetrics.xxxh:
       return ratio > kRatioXXHdpi;
+    case null:
+      return false;
   }
-  return false;
 }
 
-bool _resolveScreenSize(Configuration c, ScreenSize value) {
+bool _resolveScreenSize(Configuration c, ScreenSize? value) {
   final height = c.size.height;
  
   switch(value) {
@@ -77,31 +78,32 @@ bool _resolveScreenSize(Configuration c, ScreenSize value) {
       return height > 470 && height <= 640;
     case ScreenSize.xlarge:   // 720x960 
       return height > 640;
+    case null:
+      return false;
   }
-  return false;
 }
 
-bool _resolveOrientation(Configuration c, Orientation value) {
+bool _resolveOrientation(Configuration c, Orientation? value) {
   return value == c.orientation;
 }
 
-bool _resolveLanguageCode(Configuration c, String value) {
+bool _resolveLanguageCode(Configuration c, String? value) {
   return value == c.languageCode;
 }
 
-bool _resolveCountryCode(Configuration c, String value) {
+bool _resolveCountryCode(Configuration c, String? value) {
   return value == c.countryCode;
 }
 
-bool _resolveBrightness(Configuration c, Brightness value) {
+bool _resolveBrightness(Configuration c, Brightness? value) {
   return value == c.brightness;
 }
 
-bool _resolvePlatform(Configuration c, PlatformType value) {
+bool _resolvePlatform(Configuration c, PlatformType? value) {
   return value == c.platform;
 }
 
 
-bool _resolveDirection(Configuration c, TextDirection value) {
+bool _resolveDirection(Configuration c, TextDirection? value) {
   return value == c.direction;
 }

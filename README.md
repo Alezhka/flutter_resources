@@ -25,7 +25,6 @@ class IntResources extends ResourceDelegate<int> {
       ResourceOption(2,
         displayMetrics: DisplayMetrics.xh,
         screenSize: ScreenSize.normal,
-        displayMetrics: DisplayMetrics.h,
         orientation: Orientation.landscape,
         languageCode: 'en',
         countryCode: 'US',
@@ -59,8 +58,8 @@ final custom = resources.get<int>('custom');
 
 ## Support options
 
-* displayMetrics (s, m, h, xh, xxh, xxxh);
-* screenSize (small, normal, large);
+* displayMetrics (l, m, h, xh, xxh, xxxh);
+* screenSize (small, normal, large, xlarge);
 * orientation (portrait, landscape);
 * brightness (dark, light);
 * platform (web, android, ios, fuchsia, macOS, linux, windows)

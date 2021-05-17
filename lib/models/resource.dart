@@ -33,14 +33,14 @@ class Resource<T> {
 class ResourceOption<T> {
 
   final T value;
-  final DisplayMetrics displayMetrics;
-  final ScreenSize screenSize;
-  final Orientation orientation;
-  final String languageCode;
-  final String countryCode;
-  final Brightness brightness;
-  final PlatformType platform;
-  final TextDirection direction;
+  final DisplayMetrics? displayMetrics;
+  final ScreenSize? screenSize;
+  final Orientation? orientation;
+  final String? languageCode;
+  final String? countryCode;
+  final Brightness? brightness;
+  final PlatformType? platform;
+  final TextDirection? direction;
 
   const ResourceOption(this.value, {
     this.displayMetrics,

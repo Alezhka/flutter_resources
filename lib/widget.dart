@@ -9,9 +9,9 @@ class ResourcesData extends InheritedWidget {
   final List<ResourceDelegate> delegates;
    
   ResourcesData({
-    Key key,
-    @required this.delegates,
-    @required Widget child,
+    Key? key,
+    required this.delegates,
+    required Widget child,
   }) : super(key: key, child: child);
 
   @override
@@ -27,9 +27,9 @@ class Resources extends StatefulWidget {
   final Widget _child;
 
   Resources({
-    @override List<ResourceDelegate> delegates,
-    Widget child,
-    Key key,
+    required List<ResourceDelegate> delegates,
+    required Widget child,
+    Key? key,
   }) :
     _child = child,
     _delegates = delegates,
@@ -41,7 +41,7 @@ class Resources extends StatefulWidget {
   static R of(BuildContext context) {
     final data = context.dependOnInheritedWidgetOfExactType<ResourcesData>();
     if(data == null) {
-      return null;
+      throw Exception('Failed to depend on top widget. Please put ResourcesData widget on top.');
     }
 
     return R.of(context, data.delegates);

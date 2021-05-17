@@ -1,3 +1,7 @@
+## [0.0.5]
+
+* Bump to null safety.
+
 ## [0.0.4]
 
 * Add direction option.
