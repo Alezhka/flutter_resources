@@ -1,12 +1,12 @@
 name: flutter_resources
 description: Flutter resources managment plugin.
 version: 1.0.0
-author: Aleksei Sturov <alezhk@gmail.com>
 homepage: https://github.com/Alezhka/flutter_resources
 
 environment:
   sdk: '>=2.12.2 <3.0.0'
   flutter: '>=2.0.0'
+  collection: ^1.15.0
 
 dependencies:
   flutter:

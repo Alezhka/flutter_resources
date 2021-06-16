@@ -1,19 +1,24 @@
-import "package:collection/collection.dart";
-
 import '../flutter_resources.dart';
 
-extension IterableEntension<T> on Iterable<T> {
+extension IterableEntension<E> on Iterable<E> {
 
-  Iterable<T?> toNullable<T>() {
-    return this.cast<T?>();
+  Iterable<E?> toNullable<E>() {
+    return this.cast<E?>();
   }
+
+  Map<K, List<E>> groupBy<K>(K Function(E) keyFunction) => fold(
+      <K, List<E>>{},
+      (Map<K, List<E>> map, E element) =>
+          map..putIfAbsent(keyFunction(element), () => <E>[]).add(element));
+
+  List<E> sorted(Comparator<E> compare) => [...this]..sort(compare);
 
 }
 
 extension IterableResourceDelegate<T> on Iterable<ResourceDelegate<T>> {
 
   Map<Type, Map<String, T>> merge() {
-    return groupBy<ResourceDelegate, Type>(this, (r) => r.type)
+    return this.groupBy<Type>((r) => r.type)
       .map((key, value) {
         final merged = value
           .sorted((a, b) {
