@@ -1,12 +1,15 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_resources/constants.dart';
 import 'package:flutter_resources/flutter_resources.dart';
-import 'package:flutter_resources/models/configuration.dart';
+import 'package:flutter_resources/src/constants.dart';
+import 'package:flutter_resources/src/configuration.dart';
+import 'package:flutter_resources/src/options.dart';
 
-import 'package:flutter_resources/models/resource.dart';
+bool resolve(Configuration c, ResourceOption? o) {
+  if(o == null) {
+    return true;
+  }
 
-bool resolve(Configuration c, ResourceOption o) {
   if(o.displayMetrics != null && !_resolveDisplayMetrics(c, o.displayMetrics)) {
     return false;
   }
@@ -40,6 +43,10 @@ bool resolve(Configuration c, ResourceOption o) {
   }
 
   if(o.direction != null && !_resolveDirection(c, o.direction)) {
+    return false;
+  }
+
+  if(o.shortestSide != null && !_resolveShortestSide(c, o.shortestSide)) {
     return false;
   }
 
@@ -106,4 +113,8 @@ bool _resolvePlatform(Configuration c, PlatformType? value) {
 
 bool _resolveDirection(Configuration c, TextDirection? value) {
   return value == c.direction;
+}
+
+bool _resolveShortestSide(Configuration c, double? value) {
+  return (value ?? -1) >= c.size.shortestSide;
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-import 'models/enums.dart';
+import 'enums.dart';
 
 Type typeOf<X>() => X;
 

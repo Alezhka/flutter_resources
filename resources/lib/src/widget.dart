@@ -1,7 +1,7 @@
 
 import 'package:flutter/widgets.dart';
 
-import 'models/resource.dart';
+import 'resource.dart';
 import 'r.dart';
 
 class ResourcesData extends InheritedWidget {

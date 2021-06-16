@@ -1,6 +1,6 @@
 # flutter_resources
 
-Flutter resources managment plugin.
+Flutter resources management plugin for improve your application responsibility.
 
 ## Getting Started
 
@@ -12,38 +12,40 @@ import 'package:flutter_resources/flutter_resources.dart';
 2. Create resource delegates. For example:
 ```
 class IntResources extends ResourceDelegate<int> {
+
+  @override
+  ResourceOption? get options => null;
   
   @override
   Map<String, Resource<int>> get resources => {
-    'name': Resource(15, [
-      ResourceOption(5,
-        screenSize: ScreenSize.normal,
-        displayMetrics: DisplayMetrics.h,
-      )
-    ]),
-    'custom': Resource(10, [
-      ResourceOption(2,
-        displayMetrics: DisplayMetrics.xh,
-        screenSize: ScreenSize.normal,
-        orientation: Orientation.landscape,
-        languageCode: 'en',
-        countryCode: 'US',
-        platform: PlatformType.Android,
-      )
-    ])
+    'some_size': 15,
+  };
+
+}
+class IntTabletResources extends ResourceDelegate<int> {
+
+  @override
+  ResourceOption? get options => ResourceOption(5,
+    shortestSide: 700,
+  );
+  
+  @override
+  Map<String, Resource<int>> get resources => {
+    'some_size': 70,
   };
 
 }
 ``` 
 
-If no one options not conditions will be returned default value.
+If no one options not conditions will be returned default value fron null options.
 
 3. Put Resources widget before App widget.
 ```
 Resources( 
     delegates: [
         IntResources(),
-        ... // Some resource delegates.
+        IntTabletResources(),
+        ... // Other resource delegates.
     ],
     child: MaterialApp(), 
 )
@@ -52,7 +54,7 @@ Resources(
 4. Get data.
 ```
 final resources = Resources.of(context);
-final custom = resources.get<int>('custom');
+final size = resources.get<int>('some_size');
 
 ```
 
@@ -65,3 +67,4 @@ final custom = resources.get<int>('custom');
 * platform (web, android, ios, fuchsia, macOS, linux, windows)
 * languageCode;
 * countryCode;
+* shortestSide; (for example may be use for detect tablet. Just set >=700)

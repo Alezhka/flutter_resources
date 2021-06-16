@@ -1,3 +1,7 @@
+## [1.0.0]
+
+* New way to define resources.
+
 ## [0.0.5]
 
 * Bump to null safety.

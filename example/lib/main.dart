@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Resources(
       delegates: [
-        StringResources()
+        StringResources(),
+        StringAndroidResources(),
+        StringIOSResources()
       ],
       child: MaterialApp(
         title: 'Flutter resources',
@@ -85,84 +87,61 @@ class StringResources extends ResourceDelegate<String> {
   static const language = 'language';
   static const country = 'country';
   static const platform = 'platform';
+
+  @override
+  ResourceOption? get options => null;
   
   @override
-  Map<String, Resource<String>> get resources => {
-    display: Resource('default', [
-      ResourceOption('l',
-        displayMetrics: DisplayMetrics.l
-      ),
-      ResourceOption('m',
-        displayMetrics: DisplayMetrics.m
-      ),
-      ResourceOption('h',
-        displayMetrics: DisplayMetrics.h
-      ),
-      ResourceOption('xh',
-        displayMetrics: DisplayMetrics.xh
-      ),
-      ResourceOption('xxh',
-        displayMetrics: DisplayMetrics.xxh
-      ),
-      ResourceOption('xxxh',
-        displayMetrics: DisplayMetrics.xxxh
-      )
-    ]),
-    screen: Resource('default', [
-      ResourceOption('small',
-        screenSize: ScreenSize.small
-      ),
-      ResourceOption('normal',
-        screenSize: ScreenSize.normal
-      ),
-      ResourceOption('large',
-        screenSize: ScreenSize.large
-      ),
-      ResourceOption('xlarge',
-        screenSize: ScreenSize.xlarge
-      )
-    ]),
-    orientation: Resource('default', [
-      ResourceOption('portrait',
-        orientation: Orientation.portrait
-      ),
-      ResourceOption('landscape',
-        orientation: Orientation.landscape
-      )
-    ]),
-    language: Resource('other', [
-      ResourceOption('en',
-        languageCode: 'en'
-      ),
-    ]),
-    country: Resource('other', [
-      ResourceOption('us',
-        countryCode: 'US'
-      ),
-    ]),
-    platform: Resource('other', [
-      ResourceOption('web',
-        platform: PlatformType.web
-      ),
-      ResourceOption('android',
-        platform: PlatformType.android
-      ),
-      ResourceOption('ios',
-        platform: PlatformType.ios
-      ),
-      ResourceOption('fuchsia',
-        platform: PlatformType.fuchsia
-      ),
-      ResourceOption('linux',
-        platform: PlatformType.linux
-      ),
-      ResourceOption('macOS',
-        platform: PlatformType.macOS
-      ),
-      ResourceOption('windows',
-        platform: PlatformType.windows
-      ),
-    ])
+  Map<String, String> get values => {
+    display: 'display defaults',
+    screen: 'screen defaults',
+    orientation: 'screen defaults',
+    language: 'language defaults',
+    country: 'country defaults',
+    platform: 'Platform defaults'
+  };
+
+}
+
+
+class StringAndroidResources extends ResourceDelegate<String> {
+
+  static const display = 'display';
+  static const screen = 'screen';
+  static const orientation = 'orientation';
+  static const language = 'language';
+  static const country = 'country';
+  static const platform = 'platform';
+
+  @override
+  ResourceOption? get options => ResourceOption(
+    platform: PlatformType.android
+  );
+
+  @override
+  Map<String, String> get values => {
+    platform: 'Platform android'
+  };
+
+}
+
+class StringIOSResources extends ResourceDelegate<String> {
+
+  static const display = 'display';
+  static const screen = 'screen';
+  static const orientation = 'orientation';
+  static const language = 'language';
+  static const country = 'country';
+  static const platform = 'platform';
+
+  @override
+  ResourceOption? get options => ResourceOption(
+    platform: PlatformType.ios
+  );
+
+  @override
+  Map<String, String> get values => {
+    platform: 'Platform ios'
   };
 
 }

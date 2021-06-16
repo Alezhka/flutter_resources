@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../utils.dart';
+import 'utils.dart';
 import 'enums.dart';
 
 class Configuration {
